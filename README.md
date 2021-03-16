@@ -1,5 +1,6 @@
 
-     webpack+react+ts+antd 搭建的一个项目。熟悉 webpack 的配置，不用 react 脚手架，搭建 react 项目，并使用 antd 组件，封装一套form表单。
+> webpack+react+ts+antd 搭建的一个项目。熟悉 webpack 的配置，不用 react 脚手架，搭建 react 项目，并使用 antd 组件，封装一套form表单。
+
 
 ## webpack搭建
   1. 当在配置编译.scss时，需要注意node-sass、sass-loader的版本；或者注意webpack的版本。
