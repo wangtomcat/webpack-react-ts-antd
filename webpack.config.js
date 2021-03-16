@@ -47,19 +47,20 @@ module.exports = {
       {
         test: /\.less$/,
         // exclude: [/node_modules/],
-        use: ["style-loader", "css-loader", {
-          loader: 'less-loader', // compiles Less to CSS
-          options: {
-            lessOptions: { // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
-              modifyVars: {
-                'primary-color': '#1DA57A',
-                'link-color': '#1DA57A',
-                'border-radius-base': '2px',
+        use: ["style-loader", "css-loader",
+          {
+            loader: 'less-loader', // compiles Less to CSS
+            options: {
+              lessOptions: { // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
+                modifyVars: {
+                  'primary-color': '#FF5000',
+                  'link-color': '#FF5000',
+                  'border-radius-base': '2px',
+                },
+                javascriptEnabled: true,
               },
-              javascriptEnabled: true,
-            },
+            }
           }
-        }
         ]
       },
       {
