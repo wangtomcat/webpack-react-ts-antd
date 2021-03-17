@@ -16,7 +16,7 @@ interface IConfig {
   message?: string; // 错误信息
   layout?: Array<number>; // 布局
   description?: string; // 字段的描述
-  palceholder?: string;
+  placeholder?: string;
   validator?: Validator; // 校验规则
   maxLength?: number; // 最大长度
   showCount?: boolean; // 是否展示长度数字
@@ -102,6 +102,7 @@ export default class FormInput extends FormBase {
       prefix: config?.prefix,
       suffix: config?.suffix,
       rows: config?.rows,
+      className: config?.className
     }
 
     const typeSwitcher = {

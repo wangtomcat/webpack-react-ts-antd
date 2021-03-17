@@ -58,7 +58,7 @@ export default class FormBase extends React.Component<IProps, IState>{
     }
 
     const validateStatus = validator.validate(val)
-    const validMsg = validator.getMssage()
+    const validMsg = validator.getMessage()
 
     if (!validateStatus) {
       this.setMessage(validMsg)
