@@ -14,6 +14,7 @@ const Home = (props: any) => {
       type: "input",
       name: "input",
       label: "input",
+      value:"",
       layout,
       placeholder: "请输入",
       addonAfter: <span>12342</span>,
@@ -24,6 +25,7 @@ const Home = (props: any) => {
       name: "textarea",
       label: "textarea",
       layout,
+      value:"",
       placeholder: "请输入",
       validator: Validator.require("请输入正确值")
     }

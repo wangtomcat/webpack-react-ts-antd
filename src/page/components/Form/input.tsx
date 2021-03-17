@@ -33,23 +33,24 @@ interface IConfig {
 
 export default class FormInput extends FormBase {
   onInputChange(val: any) {
+    val.persist();
     const { value: oldValue } = this.state
     const { data } = this.props
     const { onChange } = data
     const type = data?.type || 'input'
 
     // 对number类型的进行特殊处理
-    if (type === "number" && isNaN(Number(val))) {
+    if (type === "number" && isNaN(Number(val?.target?.value))) {
       this.validate(oldValue)
       this.setState({ value: oldValue })
       return
     }
 
-    this.validate(val)
-    this.setState({ value: val })
+    this.validate(val?.target?.value)
+    this.setState({ value: val?.target?.value })
 
     if (onChange) {
-      onChange(val)
+      onChange(val?.target?.value)
     }
   }
 
