@@ -17,7 +17,7 @@ interface p {
     style?: { [key: string]: any };
     labelAlign?: "left" | "right";
     colSpan?: number;
-    toooltips?: React.ReactNode;
+    tooltips?: React.ReactNode;
   }
 }
 
@@ -49,7 +49,7 @@ export default class FormLayout extends React.Component<p>{
       style={{ ...styles }}
     >
       {children}
-      {config.toooltips ? config.toooltips : null}
+      {config.tooltips ? config.tooltips : null}
     </FormItem>
   }
 }

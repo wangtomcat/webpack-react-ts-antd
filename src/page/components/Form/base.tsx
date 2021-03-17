@@ -28,6 +28,7 @@ export default class FormBase extends React.Component<IProps, IState>{
     }
   }
 
+  // render前后的变化
   static getDerivedStateFromProps(nextProps: IProps, state: IState) {
     const { data } = nextProps
     const newState = state
@@ -51,13 +52,14 @@ export default class FormBase extends React.Component<IProps, IState>{
   }
 
   validate = (val: any) => {
-    const { validator } = this.props.data
-    if (validator) {
+    const { validator } = this.props.data  // 外部传来的校验函数
+    if (!validator) {
       return true
     }
 
     const validateStatus = validator.validate(val)
     const validMsg = validator.getMssage()
+
     if (!validateStatus) {
       this.setMessage(validMsg)
     } else {
