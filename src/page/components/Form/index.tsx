@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form } from 'antd'
 import FormInput from './input'
+import FormSelect from './select'
 
 interface FormModelItem {
   type: string;
@@ -73,6 +74,7 @@ export default class MiniForm extends React.Component<IProps>{
       "number":(item:any,key:any)=> <FormInput data={item} key={key} ref={key} />,
       "password":(item:any,key:any)=> <FormInput data={item} key={key} ref={key} />,
       "textarea":(item:any,key:any)=> <FormInput data={item} key={key} ref={key} />,
+      "select":(item:any,key:any)=> <FormSelect data={item} key={key} ref={key} />,
     }
 
     return  <Form

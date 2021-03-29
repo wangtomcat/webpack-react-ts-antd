@@ -33,7 +33,7 @@ interface IConfig {
 
 export default class FormInput extends FormBase {
   onInputChange(val: any) {
-    val.persist();
+    // val.persist();
     const { value: oldValue } = this.state
     const { data } = this.props
     const { onChange } = data
