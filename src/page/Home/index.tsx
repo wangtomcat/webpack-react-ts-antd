@@ -57,7 +57,7 @@ const Home = (props: any) => {
       layout,
       placeholder:"请选择",
       options:[{label:123,value:123},{label:456,value:456}],
-      validator: Validator.require("请输入正确值")
+      validator: Validator.require("请选择")
     },
     {
       type:"select",
@@ -67,7 +67,7 @@ const Home = (props: any) => {
       options:[{label:123,value:123},{label:456,value:456}],
       mode:"multiple",
       placeholder: "请输入",
-      validator: Validator.require("请输入正确值")
+      validator: Validator.require("请选择")
     },
     {
       type:"select",
@@ -77,7 +77,15 @@ const Home = (props: any) => {
       options:[{label:123,value:"123"},{label:456,value:"456"}],
       mode:"tags",
       placeholder: "请输入",
-      validator: Validator.require("请输入正确值")
+      validator: Validator.require("请选择")
+    },
+    {
+      type:"radio",
+      name: "radio",
+      label: "radio",
+      layout,
+      options:[{label:123,value:"123"},{label:456,value:"456"}],
+      validator: Validator.require("请选择")
     }
   ]
 
