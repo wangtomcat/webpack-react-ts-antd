@@ -18,7 +18,6 @@ interface IConfig {
   message?: string; // 错误信息
   layout?: Array<number>; // 布局
   description?: string; // 字段的描述
-  placeholder?: string;
   validator?: Validator; // 校验规则
   disabled?: boolean; // 是否禁用
   options?: IOption;

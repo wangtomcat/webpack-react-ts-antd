@@ -14,7 +14,7 @@ const Home = (props: any) => {
       type: "input",
       name: "input",
       label: "input",
-      value:"",
+      value: "",
       layout,
       placeholder: "请输入",
       addonAfter: <span>12342</span>,
@@ -24,7 +24,7 @@ const Home = (props: any) => {
       type: "password",
       name: "password",
       label: "password",
-      value:"",
+      value: "",
       layout,
       placeholder: "请输入",
       addonAfter: <span>12342</span>,
@@ -34,7 +34,7 @@ const Home = (props: any) => {
       type: "number",
       name: "number",
       label: "number",
-      value:"",
+      value: "",
       layout,
       placeholder: "请输入",
       addonAfter: <span>12342</span>,
@@ -45,61 +45,69 @@ const Home = (props: any) => {
       name: "textarea",
       label: "textarea",
       layout,
-      value:"",
+      value: "",
       placeholder: "请输入",
       validator: Validator.require("请输入正确值")
     },
     {
-      type:"select",
+      type: "select",
       name: "selectSingle",
       label: "selectSingle",
-      value:"",
+      value: "",
       layout,
-      placeholder:"请选择",
-      options:[{label:123,value:123},{label:456,value:456}],
+      placeholder: "请选择",
+      options: [{ label: 123, value: 123 }, { label: 456, value: 456 }],
       validator: Validator.require("请选择")
     },
     {
-      type:"select",
+      type: "select",
       name: "selectMultiple",
       label: "selectMultiple",
       layout,
-      options:[{label:123,value:123},{label:456,value:456}],
-      mode:"multiple",
+      options: [{ label: 123, value: 123 }, { label: 456, value: 456 }],
+      mode: "multiple",
       placeholder: "请输入",
       validator: Validator.require("请选择")
     },
     {
-      type:"select",
+      type: "select",
       name: "selectTags",
       label: "selectTags",
       layout,
-      options:[{label:123,value:"123"},{label:456,value:"456"}],
-      mode:"tags",
+      options: [{ label: 123, value: "123" }, { label: 456, value: "456" }],
+      mode: "tags",
       placeholder: "请输入",
       validator: Validator.require("请选择")
     },
     {
-      type:"radio",
+      type: "radio",
       name: "radio",
       label: "radio",
       layout,
-      options:[{label:123,value:"123"},{label:456,value:"456"}],
+      options: [{ label: 123, value: "123" }, { label: 456, value: "456" }],
       validator: Validator.require("请选择")
     },
     {
-      type:"checkbox",
+      type: "checkbox",
       name: "checkbox",
       label: "checkbox",
       layout,
-      options:[{label:123,value:"123"},{label:456,value:"456"}],
+      options: [{ label: 123, value: "123" }, { label: 456, value: "456" }],
       validator: Validator.require("请选择")
+    },
+    {
+      type: "label",
+      name: "label",
+      label: "label",
+      value: 1523453,
+      layout,
+      render: (val: any) => val
     }
   ]
 
   return <div className="homePageWrap">
     home
-    <Button type="primary" onClick={()=>{
+    <Button type="primary" onClick={() => {
       const data = formRef?.current?.getData()
       console.log(data)
     }}>home</Button>
