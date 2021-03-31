@@ -92,7 +92,7 @@ export default class FormInput extends FormBase {
       value,
       onChange: (v: any) => this.onInputChange(v),
       onBlur: () => this.onBlur(),
-      palceholder: config?.palceholder,
+      placeholder: config?.placeholder,
       maxLength: config?.maxLength,
       showCount: config?.showCount,
       disabled: config?.disabled,
