@@ -86,6 +86,14 @@ const Home = (props: any) => {
       layout,
       options:[{label:123,value:"123"},{label:456,value:"456"}],
       validator: Validator.require("请选择")
+    },
+    {
+      type:"checkbox",
+      name: "checkbox",
+      label: "checkbox",
+      layout,
+      options:[{label:123,value:"123"},{label:456,value:"456"}],
+      validator: Validator.require("请选择")
     }
   ]
 

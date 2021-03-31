@@ -3,6 +3,7 @@ import { Form } from 'antd'
 import FormInput from './input'
 import FormSelect from './select'
 import FormRadio from './radio'
+import FormCheckBox from './checkBox'
 
 interface FormModelItem {
   type: string;
@@ -77,6 +78,7 @@ export default class MiniForm extends React.Component<IProps>{
       "textarea":(item:any,key:any)=> <FormInput data={item} key={key} ref={key} />,
       "select":(item:any,key:any)=> <FormSelect data={item} key={key} ref={key} />,
       "radio":(item:any,key:any)=> <FormRadio data={item} key={key} ref={key} />,
+      "checkbox":(item:any,key:any)=> <FormCheckBox data={item} key={key} ref={key} />,
     }
 
     return  <Form
