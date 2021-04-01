@@ -43,7 +43,10 @@ const Order = (props: any) => {
       XLSX(header, data)
     }}>下载XLSX</Button>
 
-    <Upload onChange={(file) => readWorkbookFromLocalFile(file, (workbook: any) => { console.log(workbook) })}>
+    <Upload onChange={(file) => {
+      console.log(file)
+      readWorkbookFromLocalFile(file.file, (workbook: any) => { console.log(workbook) })
+    }}>
       <Button type="primary">Click to Upload</Button>
 
       <Button onClick={() => {

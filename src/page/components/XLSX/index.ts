@@ -40,16 +40,12 @@ export default function exportExcel(headers: Array<any>, data: Array<any>, fileN
 }
 
 export function readWorkbookFromLocalFile(file:any, callback:Function) {
-	// var reader = new FileReader();
-	// reader.onload = function(e) {
-	// 	var data = e.target.result;
-    //     console.log(data)
-	// 	var workbook = XLSX.read(data, {type: 'binary'});
-	// 	if(callback) callback(workbook);
-	// };
-    console.log(file)
-    var workbook = XLSX.readFile(file, {type: 'file'});
-    console.log(workbook)
-	if(callback) callback(workbook);
-	// reader.readAsBinaryString(file);
+	let reader = new FileReader();
+    reader.readAsBinaryString(file);
+	reader.onload = function(e) {
+		let data = e.target.result;
+        console.log(data)
+		let workbook = XLSX.read(data, {type: 'binary'});
+		if(callback) callback(workbook);
+	};
 }
