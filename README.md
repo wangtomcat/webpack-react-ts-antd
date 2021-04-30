@@ -6,6 +6,8 @@
   1. 当在配置编译.scss时，需要注意node-sass、sass-loader的版本；或者注意webpack的版本。
   2. resolve 配置时，需要注意 extensions 的解析顺序，它取决文件中引入模块的顺序；alias 配置了时，需要注意tsconfig.json 文件中 paths 的配置，否则模块引入时，预编译不会通过。
 
+## 分支
+    tomc/0.0.1 基础 单页面
 
 
 
