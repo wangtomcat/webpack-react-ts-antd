@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Button, Upload } from 'antd'
 import XLSX, { readWorkbookFromLocalFile } from '../components/XLSX'
 import XL from 'xlsx';
+import TestUseRefPage from './testUseRef'
 
 import './index.scss'
 
@@ -60,6 +61,8 @@ const Order = (props: any) => {
         };
       }}>sgdf</Button>
     </Upload>
+    <div>----------------------</div>
+    <TestUseRefPage />
   </div>
 }
 
