@@ -10,9 +10,9 @@ interface FormModelItem {
   type: string;
   name?: string;
   layout?: Array<number>;
-  label?:string;
+  label?: string;
   vertical?: boolean;
-  [key:string]: any;
+  [key: string]: any;
 }
 
 interface IProps {
@@ -21,7 +21,7 @@ interface IProps {
   inline?: boolean;
   model?: FormModelItem[],
   className?: string;
-  style?: {[key:string]:any};
+  style?: { [key: string]: any };
   columns?: string | number;
   responsive?: boolean;
   layout?: FormLayout; // 布局
@@ -31,24 +31,22 @@ type IType = "input" | "number" | "password" | "textarea"
 type FormLayout = 'horizontal' | 'inline' | 'vertical';
 
 export default class MiniForm extends React.Component<IProps>{
-  public getData(): | {[key:string]:any} | false {
+  refMap: Map<string, any> = new Map()
+  public getData(): | { [key: string]: any } | false {
     let newForm = {}
     let validate = true
-    for(const _ref in this.refs){
-      const component: any = this.refs[_ref]
-      if(component.getData){
-        const data = component.getData()
-        if(data === false){
-          validate = false
-        }else{
-          newForm = Object.assign(newForm,data)
-        }
+    for(let [key, value] of this.refMap){
+      const data = value.getData()
+      if (data === false) {
+        validate = false
+      } else {
+        newForm = Object.assign(newForm, data)
       }
     }
     return validate === false ? false : newForm
   }
 
-  render(){
+  render() {
     const {
       model = [],
       applyFormItem,
@@ -61,7 +59,7 @@ export default class MiniForm extends React.Component<IProps>{
       responsive = true,
       layout = "horizontal",
     } = this.props
-    const classList = ["mini_form_area",className]
+    const classList = ["mini_form_area", className]
 
     // 可以不需要
     // if(vertical){
@@ -73,26 +71,26 @@ export default class MiniForm extends React.Component<IProps>{
     // }
 
     const typeSwitcher = {
-      "input":(item:any,key:any)=> <FormInput data={item} key={key} ref={key} />,
-      "number":(item:any,key:any)=> <FormInput data={item} key={key} ref={key} />,
-      "password":(item:any,key:any)=> <FormInput data={item} key={key} ref={key} />,
-      "textarea":(item:any,key:any)=> <FormInput data={item} key={key} ref={key} />,
-      "select":(item:any,key:any)=> <FormSelect data={item} key={key} ref={key} />,
-      "radio":(item:any,key:any)=> <FormRadio data={item} key={key} ref={key} />,
-      "checkbox":(item:any,key:any)=> <FormCheckBox data={item} key={key} ref={key} />,
-      "label":(item:any,key:any)=> <FormLabel data={item} key={key} ref={key} />,
+      "input": (item: any, key: any) => <FormInput data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
+      "number": (item: any, key: any) => <FormInput data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
+      "password": (item: any, key: any) => <FormInput data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
+      "textarea": (item: any, key: any) => <FormInput data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
+      "select": (item: any, key: any) => <FormSelect data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
+      "radio": (item: any, key: any) => <FormRadio data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
+      "checkbox": (item: any, key: any) => <FormCheckBox data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
+      "label": (item: any, key: any) => <FormLabel data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
     }
 
-    return  <Form
+    return <Form
       className={classList.join(' ')}
       style={style}
       layout={layout}
     >
       {
-        model.map((item,index)=>{
+        model.map((item, index) => {
           const key = item.type + item.name + index;
           const form = typeSwitcher[item.type as IType]
-          return form ? form(item,key) : null
+          return form ? form(item, key) : null
         })
       }
       {children}

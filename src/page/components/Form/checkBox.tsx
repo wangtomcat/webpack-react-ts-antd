@@ -26,7 +26,6 @@ interface IConfig {
 
 export default class FormCheckBox extends FormBase {
   handleChange(val: any) {
-    console.log(val)
     const { data = {} } = this.props
     const { onChange } = data as IConfig;
     this.validate(val)
