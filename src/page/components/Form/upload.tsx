@@ -1,5 +1,6 @@
+import { Upload, Button } from 'antd'
 import React from 'react'
-import api from '../../config/api'
+import api from "@src/page/config/api"
 import FormBase, { IProps } from './base'
 import FormLayout from './formLayout'
 import Validator from './validator'
@@ -54,25 +55,25 @@ export default class FromUpload extends FormBase {
 
   }
 
-  onChange(info: Array<any> = []) {
+  onChange(info) {
+    const { fileList } = info || {}
     const { data } = this.props
     const { formatter = defaultFormatter } = data
 
     const value: any[] = []
-    for (let i = 0; i < info.length; i++) {
-      const file: any = info[i]
+    for (let i = 0; i < fileList.length; i++) {
+      const file: any = fileList[i]
       if (file.state === "done") {
         const val = formatter(file.response)
-        info[i].downloadURL = val
-        info[i].imgURL = val
-        info[i].url = val
+        fileList[i].downloadURL = val
+        fileList[i].imgURL = val
+        fileList[i].url = val
         value.push(val)
       }
     }
-
     this.validate(value)
     this.setState({
-      fileList: info,
+      fileList: fileList,
       value
     })
   }
@@ -92,10 +93,47 @@ export default class FromUpload extends FormBase {
     return false
   }
 
-
   render() {
-    return <FormLayout>
+    const { data } = this.props
+    const { message, fileList, loading } = this.state;
+    const type = (data && data.type) || "uploadFile";
+    const newType = data && data.formItemTypeEnum;
+    const limit = (data && data.limit) || Infinity;
+    const trigger = (data && data.trigger) || null;
+    const action = "https://www.mocky.io/v2/5cc8019d300000980a055e76"
 
+
+    // 通用的props
+    const itemProps = {
+      fileList: fileList,
+      name: "file",
+      limit,
+      onChange: info => this.onChange(info),
+      beforeUpload: data.beforeUpload,
+      onSuccess: info => {
+        data.onSuccess && data.onSuccess(info);
+        info && info.imgUrl && this.validate(info.imgUrl);
+      },
+      disabled: data.disabled,
+      accept: data.accept || "*",
+      multiple: Boolean(limit > 1),
+    };
+
+    const typeSwitch = {
+      "uploadFile": () => <Upload {...itemProps} listType="text" action={action}>
+        {trigger || (
+          <Button type="primary" style={{ margin: "0 0 10px" }}>
+            Upload File
+          </Button>
+        )}
+      </Upload>,
+      "uploadImg": () => <Upload {...itemProps} listType="picture-card" action={action} accept={itemProps.accept || "image/png, image/jpg, image/jpeg, image/gif, image/bmp"}>
+        {trigger || "上传图片"}
+      </Upload>
+    }
+
+    return <FormLayout config={data} message={message}>
+      {typeSwitch[type] ? typeSwitch[type]() : null}
     </FormLayout>
   }
 }
@@ -151,5 +189,5 @@ function creatOneFile(content: any) {
 
 // 接口默认返回的数据格式，当接口返回的格式不一样时，需要修改这里
 function defaultFormatter(response: any) {
-  return response && response.model
+  return response && response.downloadUrl
 }

@@ -5,6 +5,7 @@ import FormSelect from './select'
 import FormRadio from './radio'
 import FormCheckBox from './checkBox'
 import FormLabel from './label'
+import FormUpload from './upload'
 
 interface FormModelItem {
   type: string;
@@ -35,7 +36,7 @@ export default class MiniForm extends React.Component<IProps>{
   public getData(): | { [key: string]: any } | false {
     let newForm = {}
     let validate = true
-    for(let [key, value] of this.refMap){
+    for (let [key, value] of this.refMap) {
       const data = value.getData()
       if (data === false) {
         validate = false
@@ -79,6 +80,8 @@ export default class MiniForm extends React.Component<IProps>{
       "radio": (item: any, key: any) => <FormRadio data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
       "checkbox": (item: any, key: any) => <FormCheckBox data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
       "label": (item: any, key: any) => <FormLabel data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
+      "uploadFile": (item: any, key: any) => <FormUpload data={item} key={key} ref={f => { this.refMap.set(key, f) }} />,
+      "uploadImg": (item: any, key: any) => <FormUpload data={item} key={key} ref={f => { this.refMap.set(key, f) }} />
     }
 
     return <Form

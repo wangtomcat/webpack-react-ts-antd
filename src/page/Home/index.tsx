@@ -102,7 +102,15 @@ const Home = (props: any) => {
       value: 1523453,
       layout,
       render: (val: any) => val
-    }
+    },
+    {
+      type: "uploadImg",
+      name: "uploadImg",
+      label: "uploadImg",
+      value: ["https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png", "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"],
+      layout,
+      validator: Validator.require("请选择")
+    },
   ]
 
   return <div className="homePageWrap">
